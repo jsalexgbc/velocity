@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { VelocityService } from './velocity.service';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [VelocityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
