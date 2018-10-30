@@ -105,6 +105,28 @@ describe('VelocityService', () => {
         id: "11002", customer_id: "613", accepted: true
       });
     });
+
+    it('should return output with accepted false when > 20000 in 1 week', () => {
+      velocityService.validateLoad(
+        {"id":"11000","customer_id":"613","load_amount":"$4500","time":"2018-10-23T23:09:14Z"}
+      );
+      velocityService.validateLoad(
+        {"id":"11001","customer_id":"613","load_amount":"$4500","time":"2018-10-24T23:09:14Z"}
+      );
+      velocityService.validateLoad(
+        {"id":"11002","customer_id":"613","load_amount":"$4500","time":"2018-10-25T23:09:14Z"}
+      );
+      velocityService.validateLoad(
+        {"id":"11003","customer_id":"613","load_amount":"$4500","time":"2018-10-26T23:09:14Z"}
+      );
+
+      expect(velocityService.validateLoad(
+        {"id":"11004","customer_id":"613","load_amount":"$4500","time":"2018-10-27T23:09:14Z"}
+      ))
+      .toEqual({
+        id: "11004", customer_id: "613", accepted: false
+      });
+    });
   });
 
   describe('isInDay', () => {
